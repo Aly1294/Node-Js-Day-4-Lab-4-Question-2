@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App Using Soket io</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body id="body">
+    <input type="text" id="msg_text">
+    <button onclick="send_data()">Send</button>
+    
+    
+    
+    <script>
+        let client=io(); // this line to open connect from Client side
+    function send_data()
+    {
+        let msg_text=document.getElementById("msg_text").value;
+        client.emit("send_messege",msg_text);
+    }
+
+    client.on('messege',function(msg_text)
+    {
+        // console.log("Khaled")
+        let h2=document.createElement("h2");
+        h2.innerText=msg_text;
+        // let body=document.getElementById("body")
+        document.body.appendChild(h2);
+
+    })
+    </script>
+    <!-- <script src="/index.js"></script> -->
+</body>
+</html>
